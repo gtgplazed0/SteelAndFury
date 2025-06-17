@@ -680,12 +680,12 @@ collision_mask = 137
 script = ExtResource("2_aw3oq")
 max_duration_between_successful_hits = 2000
 can_respawn = true
-damage = 4
+damage = 2
 damage_power = 4
 duration_grounded = 500.0
 jump_intensity = 200.0
 knockdown_intensity = 150.0
-max_health = 40
+max_health = 35
 speed = 80.0
 
 [node name="Shadow" parent="." index="0"]

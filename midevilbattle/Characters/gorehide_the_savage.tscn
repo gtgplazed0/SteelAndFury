@@ -485,12 +485,12 @@ size = Vector2(16, 11.75)
 [node name="GorehideTheSavage" instance=ExtResource("1_x0elj")]
 collision_layer = 4
 script = ExtResource("2_3hlha")
-duration_between_attacks = 5000
-distance_from_player = 170
-duration_vulnerable = 1500
+duration_between_attacks = 3000
+distance_from_player = 150
+duration_vulnerable = 1000
 damage = 8
 duration_grounded = 1000.0
-flight_speed = 200.0
+flight_speed = 300.0
 knockback_intensity = 15.0
 knockdown_intensity = 50.0
 max_health = 60

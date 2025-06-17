@@ -23,6 +23,9 @@ func _process(_delta: float) -> void:
 		camera.position.x = player.position.x
 	if ui.game_over == true:
 		is_camera_locked = true
+	if player.current_health <= 0:
+		is_camera_locked = true
+		ui.game_over = true
 func on_checkpoint_start():
 	print("starting")
 	is_camera_locked = true
