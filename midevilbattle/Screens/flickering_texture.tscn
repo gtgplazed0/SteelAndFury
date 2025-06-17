@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt1a0c7eut8lp"]
+
+[ext_resource type="Script" uid="uid://dyjknghdbgoia" path="res://Screens/flickering_texture.gd" id="1_blixq"]
+
+[node name="FlickeringTexture" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_blixq")
+duration_flicker = 150
+total_flickers = 3

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cptyrbn416amo"]
+
+[ext_resource type="Script" uid="uid://b3pqvpvbo0856" path="res://Scripts/stage.gd" id="1_wfuvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahwoy"]
+size = Vector2(820.25, 124)
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_wfuvl")
+
+[node name="Backgrounds" type="Node2D" parent="."]
+
+[node name="MainBackGround" type="Sprite2D" parent="Backgrounds"]
+centered = false
+
+[node name="InvisibleObjects" type="Node2D" parent="."]
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="WorldColliders" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WorldColliders"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D"]
+position = Vector2(403.875, 45)
+shape = SubResource("RectangleShape2D_ahwoy")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="WorldColliders"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D2"]
+position = Vector2(407, 310)
+shape = SubResource("RectangleShape2D_ahwoy")
+
+[node name="Containers" type="Node2D" parent="."]

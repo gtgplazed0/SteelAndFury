@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4f6anb87m0w2"]
+
+[ext_resource type="Script" uid="uid://cr1le4hrtxj71" path="res://Screens/start.gd" id="1_cdfqj"]
+
+[node name="StartScreen" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_cdfqj")

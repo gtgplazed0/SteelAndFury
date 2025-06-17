@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cytmxhokvwqp1"]
+
+[ext_resource type="PackedScene" uid="uid://cg34e47byxnqa" path="res://Screens/Stage/stage_fader.tscn" id="1_82qww"]
+
+[node name="BoneGardenLevel" instance=ExtResource("1_82qww")]
+
+[node name="Label" parent="." index="1"]
+text = "LEVEL 2: 
+The Bone Garden"

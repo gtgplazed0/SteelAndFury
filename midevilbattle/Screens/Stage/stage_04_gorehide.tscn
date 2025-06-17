@@ -1,0 +1,166 @@
+[gd_scene load_steps=14 format=3 uid="uid://w8qylbdcmj21"]
+
+[ext_resource type="PackedScene" uid="uid://cptyrbn416amo" path="res://Screens/Stage/stage.tscn" id="1_dhdh1"]
+[ext_resource type="Texture2D" uid="uid://kvntlmalyolx" path="res://Assets/Backgrounds/Sprite-0021.png" id="2_7lgta"]
+[ext_resource type="PackedScene" uid="uid://dumjgjx3qlcv0" path="res://Screens/Stage/checkpoint.tscn" id="3_wvrig"]
+[ext_resource type="PackedScene" uid="uid://bkqy15iwypfm" path="res://Characters/gorehide_the_savage.tscn" id="4_wvrig"]
+[ext_resource type="PackedScene" uid="uid://ddnjces4qk8q8" path="res://Characters/skivermouth.tscn" id="5_4tw7p"]
+[ext_resource type="PackedScene" uid="uid://de4flwhdmopr0" path="res://Characters/blanchmaw.tscn" id="6_vafqm"]
+[ext_resource type="PackedScene" uid="uid://bsgttlf56vix8" path="res://Characters/ashmaw.tscn" id="7_i8wl2"]
+[ext_resource type="PackedScene" uid="uid://1uwom6ikq7sa" path="res://Characters/verdmaw.tscn" id="8_bdfu0"]
+[ext_resource type="PackedScene" uid="uid://vbx33iyf81l" path="res://Screens/Props/log.tscn" id="9_vafqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vafqm"]
+size = Vector2(37, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8wl2"]
+size = Vector2(13, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdfu0"]
+size = Vector2(48.5, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1638y"]
+size = Vector2(55.5, 30.9748)
+
+[node name="Stage-04-GOREHIDE" instance=ExtResource("1_dhdh1")]
+
+[node name="MainBackGround" parent="Backgrounds" index="0"]
+texture = ExtResource("2_7lgta")
+
+[node name="Rock3" type="StaticBody2D" parent="InvisibleObjects" index="0"]
+position = Vector2(137, 116)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleObjects/Rock3" index="0"]
+position = Vector2(13, -5)
+shape = SubResource("RectangleShape2D_vafqm")
+
+[node name="Rock6" type="StaticBody2D" parent="InvisibleObjects" index="1"]
+position = Vector2(137, 116)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleObjects/Rock6" index="0"]
+position = Vector2(121, 11)
+shape = SubResource("RectangleShape2D_i8wl2")
+
+[node name="Rock4" type="StaticBody2D" parent="InvisibleObjects" index="2"]
+position = Vector2(426, 113)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleObjects/Rock4" index="0"]
+position = Vector2(-1, -6)
+shape = SubResource("RectangleShape2D_bdfu0")
+
+[node name="Rock5" type="StaticBody2D" parent="InvisibleObjects" index="3"]
+position = Vector2(679, 111)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleObjects/Rock5" index="0"]
+position = Vector2(-0.75, -12.4903)
+shape = SubResource("RectangleShape2D_1638y")
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("3_wvrig")]
+position = Vector2(372, 0)
+simultaneous_enemies = 4
+finalcheckpoint = true
+
+[node name="GorehideTheSavage" parent="Checkpoints/Checkpoint/Enemys" index="0" instance=ExtResource("4_wvrig")]
+position = Vector2(499, 193)
+
+[node name="Skivermouth2" parent="Checkpoints/Checkpoint/Enemys" index="1" instance=ExtResource("5_4tw7p")]
+position = Vector2(-15, 159)
+
+[node name="Blanchmaw2" parent="Checkpoints/Checkpoint/Enemys" index="2" instance=ExtResource("6_vafqm")]
+position = Vector2(-52, 101)
+
+[node name="Blanchmaw" parent="Checkpoints/Checkpoint/Enemys" index="3" instance=ExtResource("6_vafqm")]
+position = Vector2(-52, 216)
+
+[node name="Ashmaw2" parent="Checkpoints/Checkpoint/Enemys" index="4" instance=ExtResource("7_i8wl2")]
+position = Vector2(-52, 216)
+
+[node name="Verdmaw" parent="Checkpoints/Checkpoint/Enemys" index="5" instance=ExtResource("8_bdfu0")]
+position = Vector2(-52, 101)
+
+[node name="Verdmaw2" parent="Checkpoints/Checkpoint/Enemys" index="6" instance=ExtResource("8_bdfu0")]
+position = Vector2(276, 306)
+
+[node name="Ashmaw" parent="Checkpoints/Checkpoint/Enemys" index="7" instance=ExtResource("7_i8wl2")]
+position = Vector2(43, 306)
+
+[node name="Skivermouth" parent="Checkpoints/Checkpoint/Enemys" index="8" instance=ExtResource("5_4tw7p")]
+position = Vector2(-54, 111)
+
+[node name="Blanchmaw3" parent="Checkpoints/Checkpoint/Enemys" index="9" instance=ExtResource("6_vafqm")]
+position = Vector2(476, 91)
+
+[node name="Blanchmaw4" parent="Checkpoints/Checkpoint/Enemys" index="10" instance=ExtResource("6_vafqm")]
+position = Vector2(507, 280)
+
+[node name="Ashmaw3" parent="Checkpoints/Checkpoint/Enemys" index="11" instance=ExtResource("7_i8wl2")]
+position = Vector2(485, 244)
+
+[node name="Verdmaw3" parent="Checkpoints/Checkpoint/Enemys" index="12" instance=ExtResource("8_bdfu0")]
+position = Vector2(490, 121)
+
+[node name="Verdmaw4" parent="Checkpoints/Checkpoint/Enemys" index="13" instance=ExtResource("8_bdfu0")]
+position = Vector2(414, 305)
+
+[node name="Verdmaw5" parent="Checkpoints/Checkpoint/Enemys" index="14" instance=ExtResource("8_bdfu0")]
+position = Vector2(126, 330)
+
+[node name="Ashmaw4" parent="Checkpoints/Checkpoint/Enemys" index="15" instance=ExtResource("7_i8wl2")]
+position = Vector2(553, 325)
+
+[node name="Skivermouth3" parent="Checkpoints/Checkpoint/Enemys" index="16" instance=ExtResource("5_4tw7p")]
+position = Vector2(510, 19)
+
+[node name="Verdmaw6" parent="Checkpoints/Checkpoint/Enemys" index="17" instance=ExtResource("8_bdfu0")]
+position = Vector2(281, 320)
+
+[node name="Verdmaw7" parent="Checkpoints/Checkpoint/Enemys" index="18" instance=ExtResource("8_bdfu0")]
+position = Vector2(-7, 345)
+
+[node name="Ashmaw5" parent="Checkpoints/Checkpoint/Enemys" index="19" instance=ExtResource("7_i8wl2")]
+position = Vector2(420, 340)
+
+[node name="Verdmaw8" parent="Checkpoints/Checkpoint/Enemys" index="20" instance=ExtResource("8_bdfu0")]
+position = Vector2(281, 320)
+
+[node name="Verdmaw9" parent="Checkpoints/Checkpoint/Enemys" index="21" instance=ExtResource("8_bdfu0")]
+position = Vector2(-7, 345)
+
+[node name="Ashmaw6" parent="Checkpoints/Checkpoint/Enemys" index="22" instance=ExtResource("7_i8wl2")]
+position = Vector2(420, 340)
+
+[node name="Skivermouth4" parent="Checkpoints/Checkpoint/Enemys" index="23" instance=ExtResource("5_4tw7p")]
+position = Vector2(273, 337)
+
+[node name="Skivermouth5" parent="Checkpoints/Checkpoint/Enemys" index="24" instance=ExtResource("5_4tw7p")]
+position = Vector2(-29, 299)
+
+[node name="Log" parent="Containers" index="0" instance=ExtResource("9_vafqm")]
+position = Vector2(20, 155)
+
+[node name="Log6" parent="Containers" index="1" instance=ExtResource("9_vafqm")]
+position = Vector2(493, 137)
+
+[node name="Log7" parent="Containers" index="2" instance=ExtResource("9_vafqm")]
+position = Vector2(692, 201)
+
+[node name="Log8" parent="Containers" index="3" instance=ExtResource("9_vafqm")]
+position = Vector2(432, 262)
+
+[node name="Log3" parent="Containers" index="4" instance=ExtResource("9_vafqm")]
+position = Vector2(220, 229)
+
+[node name="Log4" parent="Containers" index="5" instance=ExtResource("9_vafqm")]
+position = Vector2(202, 126)
+
+[node name="Log5" parent="Containers" index="6" instance=ExtResource("9_vafqm")]
+position = Vector2(322, 142)
+
+[node name="Log2" parent="Containers" index="7" instance=ExtResource("9_vafqm")]
+position = Vector2(65, 195)
+
+[editable path="Checkpoints/Checkpoint"]

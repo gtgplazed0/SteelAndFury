@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://crmt4yprb35xh"]
+
+[ext_resource type="FontFile" uid="uid://bis5wwjiaqnbb" path="res://fonts/bmup.otf" id="1_k7f3t"]
+[ext_resource type="Script" uid="uid://dmmikorgxnebp" path="res://Screens/combo_indicator.gd" id="2_8we78"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8we78"]
+font = ExtResource("1_k7f3t")
+font_size = 25
+font_color = Color(1, 1, 0.0352941, 1)
+
+[node name="ComboIndicator" type="Label"]
+offset_right = 40.0
+offset_bottom = 35.0
+text = "X10
+"
+label_settings = SubResource("LabelSettings_8we78")
+script = ExtResource("2_8we78")
+duration_combo_timeout = 3000

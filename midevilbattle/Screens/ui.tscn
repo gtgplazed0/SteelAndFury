@@ -1,0 +1,405 @@
+[gd_scene load_steps=19 format=3 uid="uid://nneq3d31i17p"]
+
+[ext_resource type="Script" uid="uid://didguwtr71fvn" path="res://Screens/ui.gd" id="1_3xhbi"]
+[ext_resource type="Texture2D" uid="uid://dvabiv5xt4afw" path="res://Assets/ProfilePics/Ashmaw.png" id="1_mbp3j"]
+[ext_resource type="Texture2D" uid="uid://bq277y36ecn6b" path="res://Assets/ProfilePics/Screenshot 2025-06-15 at 11.15.44 PM.png" id="2_3xhbi"]
+[ext_resource type="FontFile" uid="uid://bis5wwjiaqnbb" path="res://fonts/bmup.otf" id="2_i1moi"]
+[ext_resource type="PackedScene" uid="uid://vilhmyt1r7ty" path="res://Screens/health_bar.tscn" id="3_mbp3j"]
+[ext_resource type="PackedScene" uid="uid://crmt4yprb35xh" path="res://Screens/combo_indicator.tscn" id="6_ht8sf"]
+[ext_resource type="PackedScene" uid="uid://ntcrynxf3kla" path="res://Screens/score_indicator.tscn" id="7_e6t6a"]
+[ext_resource type="PackedScene" uid="uid://dt1a0c7eut8lp" path="res://Screens/flickering_texture.tscn" id="8_52y3y"]
+[ext_resource type="Texture2D" uid="uid://do4rs0y8jvngl" path="res://Assets/Sprite-0004.png" id="9_h3abr"]
+[ext_resource type="PackedScene" uid="uid://i1i4eq6ck2je" path="res://Screens/Stage/savage_domain_level.tscn" id="10_osr8b"]
+[ext_resource type="PackedScene" uid="uid://cytmxhokvwqp1" path="res://Screens/Stage/bone_garden_level.tscn" id="11_2uek4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i1moi"]
+font = ExtResource("2_i1moi")
+font_size = 15
+font_color = Color(0.277436, 0.000107235, 0.983484, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3xhbi"]
+font = ExtResource("2_i1moi")
+font_size = 15
+font_color = Color(0.599178, 0, 0.00104232, 1)
+
+[sub_resource type="Theme" id="Theme_h3abr"]
+default_font = ExtResource("2_i1moi")
+default_font_size = 40
+Button/colors/font_color = Color(0.978045, 0, 0.180018, 1)
+Button/colors/font_hover_color = Color(1, 0.218701, 0.253356, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3abr"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.835718, 3.22476e-06, 7.70092e-07, 1)
+border_blend = true
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+corner_detail = 20
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="Theme" id="Theme_osr8b"]
+default_font = ExtResource("2_i1moi")
+default_font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_h3abr"]
+font = ExtResource("2_i1moi")
+font_size = 54
+
+[sub_resource type="Theme" id="Theme_2uek4"]
+default_font = ExtResource("2_i1moi")
+default_font_size = 14
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_3xhbi")
+health_bar_visible = 3000
+
+[node name="UIContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerName" type="Label" parent="UIContainer"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 81.0
+offset_bottom = 53.0
+text = "SIR.FURY"
+label_settings = SubResource("LabelSettings_i1moi")
+
+[node name="EnemyName" type="Label" parent="UIContainer"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 220.0
+offset_top = 30.0
+offset_right = 399.0
+offset_bottom = 53.0
+text = "ASHMAW"
+label_settings = SubResource("LabelSettings_3xhbi")
+horizontal_alignment = 2
+
+[node name="ColorRect2" type="ColorRect" parent="UIContainer"]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 29.0
+color = Color(0.435294, 0.270588, 0.0156863, 1)
+
+[node name="ColorRect" type="ColorRect" parent="UIContainer"]
+layout_mode = 0
+offset_left = 371.0
+offset_right = 400.0
+offset_bottom = 29.0
+color = Color(0.435294, 0.270588, 0.0156863, 1)
+
+[node name="EnemyAvatar" type="TextureRect" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 28.0
+grow_horizontal = 0
+texture = ExtResource("1_mbp3j")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlayerAvatar" type="TextureRect" parent="UIContainer"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 28.0
+offset_bottom = 28.0
+texture = ExtResource("2_3xhbi")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlayerHealth" parent="UIContainer" instance=ExtResource("3_mbp3j")]
+offset_left = 31.0
+offset_top = 19.0
+offset_right = 91.0
+offset_bottom = 27.0
+
+[node name="EnemyHealth" parent="UIContainer" instance=ExtResource("3_mbp3j")]
+offset_left = 369.0
+offset_top = 19.0
+offset_right = 549.0
+offset_bottom = 83.0
+scale = Vector2(-1, 1)
+
+[node name="ComboIndicator" parent="UIContainer" instance=ExtResource("6_ht8sf")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -21.0
+offset_right = 62.0
+offset_bottom = 44.0
+grow_vertical = 0
+
+[node name="ScoreIndicator" parent="UIContainer" instance=ExtResource("7_e6t6a")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 4.0
+offset_right = 56.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="Go" parent="UIContainer" instance=ExtResource("8_52y3y")]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 70.0
+offset_right = 410.0
+offset_bottom = 145.0
+texture = ExtResource("9_h3abr")
+duration_flicker = 250
+total_flickers = 8
+
+[node name="StartScreen" type="ColorRect" parent="UIContainer"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Start" type="Button" parent="UIContainer/StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -25.0
+offset_right = 56.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h3abr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_h3abr")
+text = "START"
+
+[node name="Instructions" type="Button" parent="UIContainer/StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 45.0
+offset_right = 48.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_osr8b")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.486104, 0.418607, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_h3abr")
+text = "How 
+To Play
+"
+
+[node name="Label" type="Label" parent="UIContainer/StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -96.0
+offset_right = 191.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "STEEL AND FURY"
+label_settings = SubResource("LabelSettings_h3abr")
+horizontal_alignment = 1
+
+[node name="Pause" type="ColorRect" parent="UIContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UIContainer/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -67.0
+offset_right = 105.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_h3abr")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UIContainer/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -8.0
+offset_right = 62.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press esc to exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver" type="ColorRect" parent="UIContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UIContainer/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -67.0
+offset_right = 105.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_h3abr")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UIContainer/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -8.0
+offset_right = 62.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Enter to Restar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instructions" type="ColorRect" parent="UIContainer"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ReturnButton" type="Button" parent="UIContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = 85.0
+offset_right = -139.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_2uek4")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.486104, 0.418607, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_h3abr")
+text = "Return
+"
+
+[node name="Label" type="Label" parent="UIContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -96.0
+offset_right = 191.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "How To Play"
+label_settings = SubResource("LabelSettings_h3abr")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIContainer/Instructions"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 80.0
+offset_right = 364.0
+offset_bottom = 185.0
+text = "Controls:
+	C: Attack, Pickup
+	V: Throw Object
+	Space: Jump
+	             Jump Kick if C pressed
+                 Jump Throw if V pressed
+	Arrow Keys + WASD: Movement
+"
+
+[node name="SavageDomainLevel" parent="." instance=ExtResource("10_osr8b")]
+visible = false
+change_factor = 3.0
+
+[node name="BoneGardenLevel" parent="." instance=ExtResource("11_2uek4")]
+visible = false
+change_factor = 0.5
+
+[connection signal="button_down" from="UIContainer/StartScreen/Start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="UIContainer/StartScreen/Instructions" to="." method="_on_instructions_button_down"]
+[connection signal="button_down" from="UIContainer/Instructions/ReturnButton" to="." method="_on_return_button_button_down"]

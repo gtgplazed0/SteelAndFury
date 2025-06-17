@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://chmfo1eam4tsw"]
+
+[ext_resource type="PackedScene" uid="uid://ddnjces4qk8q8" path="res://Characters/skivermouth.tscn" id="1_xgb4i"]
+[ext_resource type="Shader" uid="uid://ce8o2rwdpurdt" path="res://materials/hit_shader.gdshader" id="2_knis6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gcrr"]
+resource_local_to_scene = true
+shader = ExtResource("2_knis6")
+shader_parameter/flash_colour = Color(1, 1, 1, 1)
+shader_parameter/hit_flash_on = false
+shader_parameter/alpha_override = 1.0
+
+[node name="SkivermouthBoss" instance=ExtResource("1_xgb4i")]
+duration_between_range_attacks = 1500
+damage = 10
+duration_between_knife_respawn = 1500
+knockback_intensity = 10.0
+max_health = 60
+speed = 70.0
+type = 6
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_0gcrr")
+
+[editable path="DamageEmitter"]
+[editable path="DamageReciver"]
+[editable path="CollatDamageEmitter"]

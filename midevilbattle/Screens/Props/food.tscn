@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://deamwo3ddl70q"]
+
+[ext_resource type="PackedScene" uid="uid://bjgeje6lytmqe" path="res://Screens/Props/collectible.tscn" id="1_qrauc"]
+[ext_resource type="Texture2D" uid="uid://p0n6gc811cri" path="res://Assets/Props/Food/TurkeyLeg.png" id="2_nqsig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqsig"]
+size = Vector2(36, 29)
+
+[sub_resource type="Animation" id="Animation_l2qkh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectibleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nqsig"]
+resource_name = "fall"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectibleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u80ea"]
+resource_name = "grounded"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollectibleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u80ea"]
+_data = {
+&"RESET": SubResource("Animation_l2qkh"),
+&"fall": SubResource("Animation_nqsig"),
+&"grounded": SubResource("Animation_u80ea")
+}
+
+[node name="Food" instance=ExtResource("1_qrauc")]
+collision_mask = 2
+type = 3
+damage = 0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_nqsig")
+
+[node name="CollectibleSprite" parent="." index="1"]
+texture = ExtResource("2_nqsig")
+offset = Vector2(0, -32)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_u80ea")
+}

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://de2yr5mj4oqtl"]
+
+[ext_resource type="PackedScene" uid="uid://sbcs75c47l5x" path="res://Screens/Stage/stage_02_the_forest.tscn" id="1_b7wjs"]
+[ext_resource type="Texture2D" uid="uid://citdr2kd28lo0" path="res://Assets/Backgrounds/background3.png" id="2_0j184"]
+
+[node name="Stage06-The-Forest" instance=ExtResource("1_b7wjs")]
+
+[node name="MainBackGround" parent="Backgrounds" index="0"]
+texture = ExtResource("2_0j184")
+
+[editable path="Checkpoints/Checkpoint"]
+[editable path="Checkpoints/Checkpoint2"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ntcrynxf3kla"]
+
+[ext_resource type="FontFile" uid="uid://bis5wwjiaqnbb" path="res://fonts/bmup.otf" id="1_soelp"]
+[ext_resource type="Script" uid="uid://bnb6oum23hja0" path="res://Screens/score_indicator.gd" id="2_xpjso"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xpjso"]
+font = ExtResource("1_soelp")
+font_color = Color(1, 1, 0.0352941, 1)
+
+[node name="ScoreIndicator" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0
+"
+label_settings = SubResource("LabelSettings_xpjso")
+horizontal_alignment = 1
+script = ExtResource("2_xpjso")
+time_to_update = 300.0

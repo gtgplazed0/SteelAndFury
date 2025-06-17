@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsoopi43lfwvb"
+path="res://.godot/imported/knife-slice-41231 (mp3cut.net).mp3-5ac84928a3b81728a6ad86a7727c5eec.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/hit/knife-slice-41231 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/knife-slice-41231 (mp3cut.net).mp3-5ac84928a3b81728a6ad86a7727c5eec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
