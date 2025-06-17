@@ -7,6 +7,7 @@ var prior_score := 0
 var displayed_score := 0
 var time_start_update := Time.get_ticks_msec()
 func _ready() -> void:
+	ComboManager.reset.connect(on_reset.bind())
 	displayed_score = 0
 	refresh()
 func _process(delta: float) -> void:
@@ -27,3 +28,7 @@ func add_combo(points: int):
 
 func refresh():
 	text = "Score:" + str(int(displayed_score))
+func on_reset():
+	real_score = 0
+	displayed_score = 0
+	refresh()

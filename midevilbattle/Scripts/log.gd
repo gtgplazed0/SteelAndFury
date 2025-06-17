@@ -1,3 +1,4 @@
+class_name Log
 extends StaticBody2D
 
 @onready var damage_receiver := $DamageReciver

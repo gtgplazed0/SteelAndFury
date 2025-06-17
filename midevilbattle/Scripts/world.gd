@@ -3,6 +3,7 @@ extends Node2D
 @onready var player := $Actors/Player
 @onready var camera := $Camera
 @onready var ui = $UI
+@onready var actors = $Actors
 var is_camera_locked : bool = false
 var player_start_x = 35
 var player_y = {
@@ -47,6 +48,13 @@ func on_final_checkpoint():
 		ui.game_over = true
 	
 func on_restart():
+	for actor in actors.get_children():
+		if actor is BasicEnemy:
+			actor.queue_free()
+	player.current_health = player.max_health
+	player.state = Character.State.IDLE
+	player.set_health(player.max_health)
+	ComboManager.reset.emit()
 	ui.current_level = 0
 	var map = ui.current_level
 	ui.starting()
