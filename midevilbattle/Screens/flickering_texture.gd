@@ -1,6 +1,6 @@
 class_name FlickeringTextureRect
 extends TextureRect
-
+# this is for the "go" texture, causing it to flicker
 @export var duration_flicker : int
 @export var total_flickers : int
 

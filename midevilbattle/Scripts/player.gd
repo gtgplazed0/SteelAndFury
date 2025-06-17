@@ -1,17 +1,18 @@
 class_name Player
 extends Character
 var hit
+#plauyer script, extended from the character
 @export var max_duration_between_successful_hits: int
 @onready var enemy_slots : Array = $PrimaryEnemySlots.get_children()
 var time_since_last_successful_attack = Time.get_ticks_msec()
 func _ready() -> void:
 	super._ready()
 	set_health(max_health)
-	anim_attacks = ["punch", "punch_alt", "punch_alt_2", "punch_alt_3"]
+	anim_attacks = ["punch", "punch_alt", "punch_alt_2", "punch_alt_3"] # 4 animations for attack, last is a power move
 func _process(delta: float) -> void:
 	super._process(delta)
 	process_time_between_combos()
-func handle_input() -> void:
+func handle_input() -> void: # player inputs for attacking, moving, etc
 	if can_move():
 		var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		velocity = direction * speed
@@ -47,7 +48,7 @@ func set_heading() -> void:
 		elif velocity.x < 0:
 			heading = Vector2.LEFT
 		
-func reserve_slot(enemy: BasicEnemy) -> EnemySlot:
+func reserve_slot(enemy: BasicEnemy) -> EnemySlot: # allow enemys to reserve a spot (mele enemies) to attack player. Stops player crowding
 	var available_slots := enemy_slots.filter(
 		func(slot): return slot.is_free()
 	)

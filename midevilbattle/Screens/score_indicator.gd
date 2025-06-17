@@ -1,5 +1,6 @@
 class_name Score
 extends Label
+# this is to manage the score in the top
 @export var time_to_update: float
 var score_to_hit :=  0
 var real_score := 0

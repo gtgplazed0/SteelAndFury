@@ -2,6 +2,7 @@ class_name Character
 extends CharacterBody2D
 
 const GRAVITY := 600.0
+#exported editable variables
 @export var can_respawn : bool
 @export var can_respawn_knives : bool
 @export var can_drop_knives: bool
@@ -17,7 +18,7 @@ const GRAVITY := 600.0
 @export var max_health : int
 @export var speed : float
 @export var type: Type
-
+#onready variables for instance creations
 @onready var hit_flash_anim: AnimationPlayer = $HitFlash
 @onready var projectile_aim : RayCast2D = $ProjectileAim
 @onready var animation_player := $AnimationPlayer
@@ -32,7 +33,7 @@ const GRAVITY := 600.0
 @onready var weapon_position_top : Node2D = $KnifeSprite/WeaponPositionTop
 @onready var shadow : Sprite2D = $Shadow
 @onready var in_wall_detection : Area2D = $InWallDetector
-
+#enum maps for states and animations
 enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK, THROW,JUMPTHROW,PICKUP, RECOVER}
 enum Type{PLAYER, ASHMAW, BLANCHMAW, VERDMAW, SKIVER, GOREHIDE, KINGSKIVER}
 var anim_attacks := []
@@ -55,24 +56,34 @@ var anim_map := {
 	State.JUMPTHROW: "jump_throw",
 	State.RECOVER: "recover"
 }
+#which attack are we on
 var attack_combo_index := 0
+#health
 var current_health := 0
+#which direction we are going
 var heading := Vector2.RIGHT
+# height (for jump, fall)
 var height := 0.0
 var height_speed := 0.0
+#for combo
 var is_last_hit_successful := false
+#out current state (check enum map)
 var state := State.IDLE
+#timers
 var time_since_grounded := Time.get_ticks_msec()
 var time_since_knife_dismiss := Time.get_ticks_msec()
+#signal to let go of knife
 signal free_knife(knife: Collectible)
 
 func _ready() -> void:
+	#connections and ready properties on load
 	damage_emitter.area_entered.connect(on_emit_damage.bind())
 	damage_receiver.damage_received.connect(on_receive_damage.bind())
 	collateral_damage_emitter.area_entered.connect(on_emit_collateral_damage.bind())
 	collateral_damage_emitter.body_entered.connect(on_wall_hit.bind())
 	current_health = max_health
 func _process(delta: float) -> void:
+	#handleing all needed items
 	handle_input()
 	handle_movement()
 	handle_animations()
@@ -84,13 +95,16 @@ func _process(delta: float) -> void:
 	set_heading()
 	flip_sprites()
 	knife_sprite.visible = has_knife
+	# movement
 	character_sprite.position = Vector2.UP * height
 	knife_sprite.position = Vector2.UP * height
+	#proper shaping and collision detection
 	collision_shape.disabled = is_collision_disabled()
 	damage_receiver.monitorable = can_get_hurt()
+	#called to smo0thly move
 	move_and_slide()
-
-func handle_movement() -> void:
+# most functions are overwritten in enemy, player and boss scripts
+func handle_movement() -> void: # allows for movement in all player and enemy 
 	if can_move():
 		if velocity.length() == 0:
 			state = State.IDLE
@@ -114,14 +128,14 @@ func handle_knife_respawn() -> void:
 		has_knife = true
 		
 	
-func handle_death(delta: float) -> void:
+func handle_death(delta: float) -> void: # die
 	if state == State.DEATH and not can_respawn:
 		character_sprite.set_material(null)
 		modulate.a -= delta / 2.0
 		if modulate.a <= 0:
 			queue_free()
 
-func handle_animations() -> void:
+func handle_animations() -> void: #play needed animations
 	if state == State.ATTACK:
 		animation_player.play(anim_attacks[attack_combo_index])
 	elif animation_player.has_animation(anim_map[state]):
@@ -227,7 +241,7 @@ func on_land_complete() -> void:
 func on_pickup_complete():
 	state = State.IDLE
 	pickup_collectible()
-
+#collision detection for taking, and giving, damage. Overwritten in player and enemy
 func on_receive_damage(emitter, amount: int, direction: Vector2, hit_type: DamageReceiver.HitType) -> void:
 	if can_get_hit_thrown(hit_type):
 		if emitter is Collectible:
@@ -281,11 +295,12 @@ func on_emit_collateral_damage(receiver: DamageReceiver) -> void:
 		var direction := Vector2.LEFT if receiver.global_position.x < global_position.x else Vector2.RIGHT
 		receiver.damage_received.emit(self, 0, direction, DamageReceiver.HitType.KNOCKDOWN)
 
+#hitting the wall (when enemys are flying to the wall)
 func on_wall_hit(_wall: AnimatableBody2D) -> void:
 	state = State.FALL
 	height_speed = knockback_intensity
 	velocity = -velocity / 2.0
-	
+#sets the health to change healthbars
 func set_health(health):
 	current_health = clamp(health, 0, max_health)
 	DamageManager.health_change.emit(type, current_health, max_health)

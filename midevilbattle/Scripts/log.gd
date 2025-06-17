@@ -1,6 +1,6 @@
 class_name Log
 extends StaticBody2D
-
+#breakable log script
 @onready var damage_receiver := $DamageReciver
 @onready var sprite := $Sprite2D
 
@@ -8,9 +8,9 @@ extends StaticBody2D
 @export var knockback_intensity : float
 @export var content_type: Collectible.Type = Collectible.Type.NONE
 const GRAVITY := 600.0
-
+#enum maps for characters
 enum State {IDLE, DESTROYED}
-
+# needed variables like type of dropped item,
 var height := 0.0
 var height_speed := 0.0
 var state := State.IDLE
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	sprite.position = Vector2.UP * height
 	handle_air_time(delta)
-
+#break object when hit, and drop an item (maybe drop)
 func on_receive_damage(_emitter, _damage: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
 	if state == State.IDLE:
 		sprite.texture = load("res://Assets/Props/SnowyLog/SnowyLogHit.png")
@@ -36,7 +36,7 @@ func on_receive_damage(_emitter, _damage: int, direction: Vector2, _hit_type: Da
 		if content_type not in [Collectible.Type.ENEMY_KNIFE, Collectible.Type.PLAYER_KNIFE, Collectible.Type.NONE]:
 			EntityManager.spawn_collectible.emit(content_type, Collectible.State.FALL, global_position, Vector2.ZERO, 0.0)
 		velocity = direction * knockback_intensity
-
+#fly
 func handle_air_time(delta: float) -> void:
 	if state == State.DESTROYED:
 		modulate.a -= delta

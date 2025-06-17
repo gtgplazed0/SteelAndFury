@@ -34,7 +34,7 @@ func on_checkpoint_complete():
 	print("finished")
 	is_camera_locked = false
 
-func on_final_checkpoint():
+func on_final_checkpoint(): # boss checkpoints take you to next level
 	var map = ui.current_level
 	if map == 1:
 		ui.change_level()

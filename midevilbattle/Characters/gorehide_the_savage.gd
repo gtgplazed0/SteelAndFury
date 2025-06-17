@@ -1,7 +1,7 @@
 class_name GoreHide
 extends Character
 const GROUNDFRICTION = 65
-
+# boss script (bear)
 @export var player: Player
 @export var duration_between_attacks : int
 @export var distance_from_player: int

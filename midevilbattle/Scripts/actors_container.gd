@@ -1,6 +1,7 @@
 extends Node2D
 @export var player : Player
 var all_log = []
+#instance maps
 const ENEMY_MAP := {
 	Character.Type.ASHMAW: preload("res://Characters/ashmaw.tscn"), 
 	Character.Type.VERDMAW: preload("res://Characters/verdmaw.tscn"), 
@@ -21,6 +22,7 @@ func _init() -> void:
 	EntityManager.spawn_collectible.connect(_on_spawn_collectible.bind())
 	EntityManager.spawn_enemy.connect(_on_spawn_enemy.bind())
 	EntityManager.orphan_actor.connect(on_orphan_actor.bind())
+#spawner functions
 func _on_spawn_collectible(type: Collectible.Type, initial_state: Collectible.State, collectible_global_position: Vector2, collectibel_direction: Vector2, inital_height:float):
 	var collectible: Collectible = prefab_map[type].instantiate()
 	collectible.state = initial_state
@@ -39,6 +41,7 @@ func on_spawn_log(new_position):
 	var new_log = log.instantiate()
 	new_log.global_position = new_position
 	add_child(new_log)
+#add new childs and restart game
 func on_orphan_actor(orphan: Node2D):
 	all_log.append(orphan.global_position)
 	orphan.reparent(self)

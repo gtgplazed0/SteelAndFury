@@ -5,7 +5,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	start_game()
-	
+
 func start_game():
 	if Input.is_anything_pressed() and game_is_on == false:
 		game_is_on == true

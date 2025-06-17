@@ -1,5 +1,6 @@
 class_name UI
 extends CanvasLayer
+#controls the ui of the game using exported and onready variables, setting visibilites
 @export var health_bar_visible: int
 @onready var pause = $UIContainer/Pause
 @onready var enemy_name := $UIContainer/EnemyName

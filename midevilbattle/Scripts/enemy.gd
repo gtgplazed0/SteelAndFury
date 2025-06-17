@@ -2,6 +2,7 @@ class_name BasicEnemy
 extends Character
 
 const EDGE_SCREEN_BUFFER := 30
+#attack timers and player 
 @export var duration_between_melee_attacks : int
 @export var duration_between_range_attacks : int
 @export var duration_prep_melee_attack : int
@@ -9,6 +10,7 @@ const EDGE_SCREEN_BUFFER := 30
 @export var player : Player
 
 var player_slot : EnemySlot = null
+#timers
 var time_since_last_melee_attack := Time.get_ticks_msec()
 var time_since_prep_melee_attack := Time.get_ticks_msec()
 var time_since_last_range_attack := Time.get_ticks_msec()
@@ -24,7 +26,7 @@ func handle_input() -> void:
 			goto_range_position()
 		else:
 			goto_melee_position()
-
+# for ranged enemies movement
 func goto_range_position() -> void:
 	var camera := get_viewport().get_camera_2d()
 	var screen_width := get_viewport_rect().size.x
@@ -47,7 +49,7 @@ func goto_range_position() -> void:
 		state = State.THROW
 		time_since_knife_dismiss = Time.get_ticks_msec()
 		time_since_last_range_attack = Time.get_ticks_msec()
-
+# for mele movement
 func goto_melee_position() -> void:
 	if player_slot == null:
 		player_slot = player.reserve_slot(self)
@@ -61,22 +63,22 @@ func goto_melee_position() -> void:
 				time_since_prep_melee_attack = Time.get_ticks_msec()
 		else:
 			velocity = direction * speed
-			
+# prepe the attack state
 func handle_prep_attack() -> void:
 	if state == State.PREP_ATTACK and (Time.get_ticks_msec() - time_since_prep_melee_attack > duration_prep_melee_attack):
 		state = State.ATTACK
 		time_since_last_melee_attack = Time.get_ticks_msec()
 		anim_attacks.shuffle()
-
+# close enough to player?? (mele)
 func is_player_within_range() -> bool:
 	return (player_slot.global_position - global_position).length() < 1
 
-func can_attack() -> bool:
+func can_attack() -> bool: # can we attack?
 	if Time.get_ticks_msec() - time_since_last_melee_attack < duration_between_melee_attacks:
 		return false
 	return super.can_attack()
 
-func can_throw() -> bool:
+func can_throw() -> bool: #can we throw the knife? 
 	if not has_knife:
 		time_since_last_range_attack = Time.get_ticks_msec()
 	if Time.get_ticks_msec() - time_since_last_range_attack < duration_between_range_attacks and has_knife:
@@ -116,7 +118,7 @@ func on_receive_damage(emitter, amount: int, direction: Vector2, hit_type: Damag
 		player.free_slot(self)
 		EntityManager.death_enemy.emit(self)
 
-func play_sound(type):
+func play_sound(type): # play death sounds
 	if [Character.Type.ASHMAW, Character.Type.VERDMAW, Character.Type.BLANCHMAW].has(type):
 		print("playing")
 		Music.sfx_play("wolf")

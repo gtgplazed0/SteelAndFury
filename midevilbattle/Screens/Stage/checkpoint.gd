@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 		active_enemy_counter += 1
 func can_spawn_enemy():
 	return enemy_data.size() > 0 and active_enemy_counter < simultaneous_enemies
-func _ready():
+func _ready(): #loaded all signals and enemies on ready
 	StageManager.game_restart.connect(on_restart.bind())
 	EntityManager.death_enemy.connect(on_enemy_death.bind())
 	player_detection_area.body_entered.connect(_on_player_entered.bind())
@@ -24,12 +24,13 @@ func _ready():
 		enemy_new.append(EnemyData.new(enemy.type, enemy.global_position))
 		enemy.queue_free()
 		
-func _on_player_entered(player: Player):
+func _on_player_entered(player: Player): #if the player starts the checkpoint
 	if not is_activated:
 		StageManager.checkpoint_start.emit()
 		active_enemy_counter = 0
 		is_activated = true
 	
+#if an enemy dies, check if we can clear the checkpoint
 func on_enemy_death(enemy: Character):
 	active_enemy_counter -= 1
 	if active_enemy_counter == 0 and enemy_data.size() == 0:
@@ -38,7 +39,7 @@ func on_enemy_death(enemy: Character):
 		else:
 			StageManager.checkpoint_complete.emit()
 		#queue_free()
-
+#on game restart
 func on_restart():
 	enemy_data = enemy_new
 	is_activated = false

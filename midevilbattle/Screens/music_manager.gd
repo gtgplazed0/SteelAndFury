@@ -1,5 +1,6 @@
 class_name MusicManager
 extends Node
+# allows for global sound effects and music management
 @onready var music_player = $MusicStreamPlayer
 var music = [preload("res://Assets/Sounds/medieval-ambient-236809.mp3"), preload("res://Assets/Sounds/medieval-background-196571.mp3"), preload("res://Assets/Sounds/medieval-fantasy-142837.mp3"
 ), preload("res://Assets/Sounds/mountain-knight-castle-medieval-fantasy-orchestral-music-264986.mp3")]

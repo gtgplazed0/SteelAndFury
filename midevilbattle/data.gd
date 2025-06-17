@@ -1,6 +1,6 @@
 class_name EnemyData
 extends Resource
-
+# holds data for instantiaing enemies (type of enemy, position)
 @export var height : int
 @export var type : Character.Type
 @export var global_position : Vector2
